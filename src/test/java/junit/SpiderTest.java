@@ -16,4 +16,9 @@ public class SpiderTest {
     public void testSpiderIfAllowsForMaxPagesLimitOf10ToBeExceeded() {
         Spider testSpider = new Spider(11);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testSpiderIfNotAllowsForMaxPagesToBeLessThan0() {
+        Spider testSpider = new Spider(-1);
+    }
 }

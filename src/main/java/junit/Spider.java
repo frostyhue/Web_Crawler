@@ -13,5 +13,5 @@ public class Spider {
     public int getNrOfMaxPages(){
         return this.MAX_PAGES_TO_SEARCH;
     }
-    
+
 }
