@@ -9,6 +9,6 @@ public class SpiderTest {
     @Test
     public void testSpiderMaxPagesToSearchIfExceedsLimit() {
         Spider testSpider = new Spider(5);
-        assertEquals(10,testSpider.getNrOfMaxPages);
+        assertEquals(5,testSpider.getNrOfMaxPages());
     }
 }
