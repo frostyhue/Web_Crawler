@@ -7,6 +7,9 @@ public class Spider {
         if (maxPages > 10){
             throw new IllegalArgumentException("Max pages limit allowed exceeded, limit is 10 you tried: " + maxPages + "!");
         }
+        if (maxPages < 0){
+            throw new IllegalArgumentException("Can not set max page limit to less than 0!");
+        }
         MAX_PAGES_TO_SEARCH = maxPages;
     }
 
