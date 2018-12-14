@@ -24,10 +24,6 @@ public class SpiderTest {
     @Test
     public void testIfNextURLReturnsURL() {
         Spider testObj = new Spider(10);
-        testObj.pagesToVisit.add("https://testURL0.test");
-        testObj.pagesToVisit.add("https://testURL1.test");
-        testObj.pagesToVisit.add("https://testURL2.test");
-        testObj.pagesToVisit.add("https://testURL3.test");
 
         assertEquals(testObj.getNextURL(), "https://testURL0.test");
         assertEquals(testObj.getNextURL(), "https://testURL1.test");
@@ -39,12 +35,9 @@ public class SpiderTest {
     public void testIfgetNextURLReturnsWrongURL() {
         Spider testObj = new Spider(10);
         // Add a url that should not be the first one.
-        testObj.pagesToVisit.add("https://testURL2.test");
-        testObj.pagesToVisit.add("https://testURL1.test");
-        testObj.pagesToVisit.add("https://testURL3.test");
 
-        assertNotEquals(testObj.getNextURL(), "https://testURL1.test");
         assertNotEquals(testObj.getNextURL(), "https://testURL2.test");
+        assertNotEquals(testObj.getNextURL(), "https://testURL3.test");
         assertNotEquals(testObj.getNextURL(), "https://testURL4.test");
     }
 }
