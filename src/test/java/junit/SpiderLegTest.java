@@ -17,6 +17,6 @@ public class SpiderLegTest {
     public void testSpiderLegCrawlDirectInput()
     {
         SpiderLeg leg = new SpiderLeg();
-        assertEquals(true, leg.crawl("www.google.com"));
+        assertEquals(true, leg.crawl("https://www.google.com"));
     }
 }
