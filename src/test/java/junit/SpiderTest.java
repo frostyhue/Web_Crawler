@@ -34,7 +34,7 @@ public class SpiderTest {
     @Test
     public void testIfgetNextURLReturnsURLNotEqualsTest() {
         Spider testObj = new Spider(10);
-        // Add a url that should not be the first one.
+        // Add a url that should not be the first one..
 
         assertNotEquals(testObj.getNextURL(), "https://testURL2.test");
         assertNotEquals(testObj.getNextURL(), "https://testURL3.test");
