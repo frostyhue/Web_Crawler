@@ -32,7 +32,7 @@ public class SpiderTest {
     }
 
     @Test
-    public void testIfgetNextURLReturnsWrongURL() {
+    public void testIfgetNextURLReturnsURLNotEqualsTest() {
         Spider testObj = new Spider(10);
         // Add a url that should not be the first one.
 
