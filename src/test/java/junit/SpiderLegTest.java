@@ -12,4 +12,11 @@ public class SpiderLegTest {
         SpiderLeg leg = new SpiderLeg();
         assertEquals(true, leg.crawl("https://www.google.com"));
     }
+
+    @Test
+    public void testSpiderLegCrawlDirectInput()
+    {
+        SpiderLeg leg = new SpiderLeg();
+        assertEquals(true, leg.crawl("www.google.com"));
+    }
 }
