@@ -7,8 +7,8 @@ import java.util.Set;
 
 public class Spider {
     private int MAX_PAGES_TO_SEARCH;
-    public Set<String> pagesVisited = new HashSet<String>();
-    public List<String> pagesToVisit = new LinkedList<String>();
+    private Set<String> pagesVisited = new HashSet<String>();
+    private List<String> pagesToVisit = new LinkedList<String>();
 
     public Spider(int maxPages) {
         if (maxPages > 10){
@@ -17,6 +17,10 @@ public class Spider {
         if (maxPages < 0){
             throw new IllegalArgumentException("Can not set max page limit to less than 0!");
         }
+        this.pagesToVisit.add("https://testURL0.test");
+        this.pagesToVisit.add("https://testURL1.test");
+        this.pagesToVisit.add("https://testURL2.test");
+        this.pagesToVisit.add("https://testURL3.test");
         MAX_PAGES_TO_SEARCH = maxPages;
     }
 
