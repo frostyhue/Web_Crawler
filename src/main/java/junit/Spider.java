@@ -25,7 +25,12 @@ public class Spider {
     }
 
     public String getNextURL(){
-        return null;
+        String nextUrl;
+        do{
+            nextUrl = this.pagesToVisit.remove(0);
+        } while(this.pagesVisited.contains(nextUrl));
+        this.pagesVisited.add(nextUrl);
+        return nextUrl;
     }
 
 }

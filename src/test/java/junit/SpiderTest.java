@@ -30,5 +30,6 @@ public class SpiderTest {
         testObj.pagesToVisit.add("https://testURL3.test");
 
         assertEquals(testObj.getNextURL(), "https://testURL0.test");
+
     }
 }
