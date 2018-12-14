@@ -33,6 +33,18 @@ public class SpiderTest {
         assertEquals(testObj.getNextURL(), "https://testURL1.test");
         assertEquals(testObj.getNextURL(), "https://testURL2.test");
         assertEquals(testObj.getNextURL(), "https://testURL3.test");
+    }
 
+    @Test
+    public void testIfgetNextURLReturnsWrongURL() {
+        Spider testObj = new Spider(10);
+        // Add a url that should not be the first one.
+        testObj.pagesToVisit.add("https://testURL2.test");
+        testObj.pagesToVisit.add("https://testURL1.test");
+        testObj.pagesToVisit.add("https://testURL3.test");
+
+        assertNotEquals(testObj.getNextURL(), "https://testURL1.test");
+        assertNotEquals(testObj.getNextURL(), "https://testURL2.test");
+        assertNotEquals(testObj.getNextURL(), "https://testURL4.test");
     }
 }
