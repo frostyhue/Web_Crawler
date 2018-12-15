@@ -12,16 +12,25 @@ import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Class that handles the search of the key word on the web-page to gather the data needed and return it to the Spider body so that it converts it into a corresponding JSON.
+ */
 public class SpiderLeg {
     private static final String USER_AGENT =
             "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.1 (KHTML, like Gecko) Chrome/13.0.782.112 Safari/535.1";
     private List<String> links = new LinkedList<String>();
     private Document htmlDocument;
     private String url;
+
     public SpiderLeg()
     {
     }
 
+    /**
+     * Method that searches the website and links inside of it for the key word.
+     * @param url
+     * @return
+     */
     public boolean crawl(String url)
     {
 
