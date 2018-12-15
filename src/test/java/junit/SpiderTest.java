@@ -81,4 +81,21 @@ public class SpiderTest {
         verify(m).getFormat();
     }
 
+    @Test
+    public void testMockMovieYear() {
+        Movie m = mock(Movie.class);
+        Spider sut = new Spider(10);
+
+        when(m.getDirector()).thenReturn(directorMovie);
+        when(m.getYear()).thenReturn(yearMovie);
+        when(m.getFormat()).thenReturn(formatMovie);
+        when(m.getGenre()).thenReturn(genreMovie);
+        when(m.getStars()).thenReturn(starsMovie);
+        when(m.getWriters()).thenReturn(writersMovie);
+
+
+        sut.getMovie(m.getGenre(), m.getFormat(), m.getYear(), m.getDirector(), m.getWriters(), m.getStars());
+        verify(m).getYear();
+    }
+
 }
