@@ -37,4 +37,16 @@ public class Spider {
         return nextUrl;
     }
 
+    public Music getMusic(String genre, String format, String year, String artist)
+    {
+        Music m = new Music(genre,format, year, artist);
+        return m;
+    }
+
+
+    public Movie getMovie(String genre, String format, String year, String director, String writers, String stars){
+        Movie m = new Movie(genre, format, year, director, stars, writers);
+        return m;
+    }
+
 }
