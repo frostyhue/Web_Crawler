@@ -11,6 +11,12 @@ public class SpiderTest {
     /**
      * Mock test parameters for dummy objects.
      */
+    private static final String genre = "metal";
+    private static final String year = "2023";
+    private static final String format = "ple-bei";
+    private static final String artist = "metalnika";
+
+
     private static final String genreMovie = "akshon";
     private static final String yearMovie = "2000";
     private static final String formatMovie = "ple-bei";
@@ -127,6 +133,57 @@ public class SpiderTest {
 
 
         sut.getMovie(m.getGenre(), m.getFormat(), m.getYear(), m.getDirector(), m.getWriters(), m.getStars());
+        verify(m).getYear();
+    }
+
+    /**
+     * Mock test with dummy object testing for getting the correct genre of the Music object.
+     */
+    @Test
+    public void testMockMusicGenre() {
+        Music m = mock(Music.class);
+        Spider sut = new Spider(10);
+
+        when(m.getArtist()).thenReturn(artist);
+        when(m.getYear()).thenReturn(year);
+        when(m.getFormat()).thenReturn(format);
+        when(m.getGenre()).thenReturn(genre);
+
+        sut.getMusic(m.getGenre(), m.getArtist(), m.getYear(), m.getFormat());
+        verify(m).getGenre();
+    }
+
+    /**
+     * Mock test with dummy object testing for getting the correct format of the Music object.
+     */
+    @Test
+    public void testMockMusicFormat() {
+        Music m = mock(Music.class);
+        Spider sut = new Spider(10);
+
+        when(m.getArtist()).thenReturn(artist);
+        when(m.getYear()).thenReturn(year);
+        when(m.getFormat()).thenReturn(format);
+        when(m.getGenre()).thenReturn(genre);
+
+        sut.getMusic(m.getGenre(), m.getArtist(), m.getYear(), m.getFormat());
+        verify(m).getFormat();
+    }
+
+    /**
+     * Mock test with dummy object testing for getting the correct year of the Music object.
+     */
+    @Test
+    public void testMockMusicYear() {
+        Music m = mock(Music.class);
+        Spider sut = new Spider(10);
+
+        when(m.getArtist()).thenReturn(artist);
+        when(m.getYear()).thenReturn(year);
+        when(m.getFormat()).thenReturn(format);
+        when(m.getGenre()).thenReturn(genre);
+
+        sut.getMusic(m.getGenre(), m.getArtist(), m.getYear(), m.getFormat());
         verify(m).getYear();
     }
 
