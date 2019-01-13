@@ -58,4 +58,5 @@ public class SpiderTest {
 
         assertEquals(result, spider.search(url,word));
     }
+
 }
