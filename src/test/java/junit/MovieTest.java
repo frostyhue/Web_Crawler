@@ -11,7 +11,9 @@ public class MovieTest {
 
     @Test
     public void testMovieIfConstructorSetsDirector(){
-        Movie movieObj = new Movie("Fantasy", "Blu-ray", "2001", "Peter Jackson");
+        List<String> stars = new ArrayList<>();
+        List<String> writers = new ArrayList<>();
+        Movie movieObj = new Movie("Fantasy", "Blu-ray", "2001", "Peter Jackson", "Another Movie", stars, writers);
 
         assertEquals("Peter Jackson", movieObj.getDirector());
     }
