@@ -12,5 +12,9 @@ public class Music extends JSONBase{
         this.category = c;
     }
 
+    public String getArtist(){
+        return this.artist;
+    }
+
 
 }
