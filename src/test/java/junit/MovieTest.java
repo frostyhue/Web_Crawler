@@ -105,18 +105,5 @@ public class MovieTest {
         when(mockMovie.getStars()).thenReturn(testList);
 
         assertEquals(mockMovie.getStars(), testList);
-    }/**
-     * Mock test for Movie getJSONFile size by default.
-     */
-    @Test
-    public void testMovieJSONSizeDefault(){
-        Movie mockMovie = mock(Movie.class);
-
-        when(mockMovie.getFormat()).thenReturn("");
-        when(mockMovie.getCategory()).thenReturn("");
-        when(mockMovie.getYear()).thenReturn("");
-
-        assertEquals(mockMovie.getJSONFile().size(), 3);
-
     }
 }
