@@ -1,7 +1,10 @@
 package junit;
 
+import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import static junitparams.JUnitParamsRunner.$;
@@ -9,6 +12,7 @@ import static junitparams.JUnitParamsRunner.$;
 /**
  * Spider test class covering every testable aspect of the class.
  */
+@RunWith(JUnitParamsRunner.class)
 public class SpiderTest {
 
     private static final Object[] setUrlAndWord(){
