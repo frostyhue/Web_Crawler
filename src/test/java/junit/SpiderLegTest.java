@@ -27,4 +27,13 @@ public class SpiderLegTest {
         String url = "https://www.google.com";
         assertEquals(true, leg.crawl(url));
     }
+
+    @Test
+    public void testSearchForWord()
+    {
+        SpiderLeg leg = new SpiderLeg();
+        String url = "https://www.google.com";
+        leg.crawl(url);
+        assertEquals(true, leg.searchForWord("Google"));
+    }
 }

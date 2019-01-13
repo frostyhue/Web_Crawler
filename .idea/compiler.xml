@@ -4,6 +4,8 @@
     <bytecodeTargetLevel>
       <module name="junit_main" target="1.10" />
       <module name="junit_test" target="1.10" />
+      <module name="Web_Crawler-junit_main" target="1.10" />
+      <module name="Web_Crawler-junit_test" target="1.10" />
     </bytecodeTargetLevel>
   </component>
 </project>
