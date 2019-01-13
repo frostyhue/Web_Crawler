@@ -1,5 +1,6 @@
 package junit;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -36,6 +37,19 @@ public class MovieTest {
         assertEquals("Movie", movieObj.getCategory());
         assertEquals(writersTest, movieObj.getWriters());
         assertEquals(starsTest, movieObj.getStars());
+    }
+
+    @Test
+    public void testJsonObjectsSize(){
+        List<String> writersTest = new ArrayList<>();
+        writersTest.add("Peter");
+        writersTest.add("George");
+        List<String> starsTest = new ArrayList<>();
+        starsTest.add("Kosta");
+        starsTest.add("Zeus");
+        Movie movieObj = new Movie("Bambi","Fantasy", "Blu-ray", "2001", "Peter Jackson", "Movie", writersTest, starsTest);
+
+        assertEquals(movieObj.getJSONFile().size(), 8);
     }
 
 }

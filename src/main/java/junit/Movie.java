@@ -1,5 +1,7 @@
 package junit;
 
+import org.json.simple.JSONObject;
+
 import java.util.List;
 
 public class Movie extends JSONBase {
@@ -37,5 +39,10 @@ public class Movie extends JSONBase {
 
     public String getTitle() {
         return title;
+    }
+
+    @Override
+    public JSONObject getJSONFile() {
+        return super.getJSONFile();
     }
 }
