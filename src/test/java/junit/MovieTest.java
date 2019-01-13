@@ -9,6 +9,6 @@ public class MovieTest {
     public void testMovieIfConstructorSetsDirector(){
         Movie movieObj = new Movie("Fantasy", "Blu-ray", "2001", "Peter Jackson");
 
-        assertEquals("Peter Jackson", movieObj.director);
+        assertEquals("Peter Jackson", movieObj.getDirector());
     }
 }
