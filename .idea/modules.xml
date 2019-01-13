@@ -3,8 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Web_Crawler.iml" filepath="$PROJECT_DIR$/.idea/Web_Crawler.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Web_Crawler-junit_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Web_Crawler-junit_main.iml" group="junit" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Web_Crawler-junit_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Web_Crawler-junit_test.iml" group="junit" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/junit.iml" filepath="$PROJECT_DIR$/.idea/modules/junit.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/junit_main.iml" filepath="$PROJECT_DIR$/.idea/modules/junit_main.iml" group="junit" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/junit_test.iml" filepath="$PROJECT_DIR$/.idea/modules/junit_test.iml" group="junit" />
