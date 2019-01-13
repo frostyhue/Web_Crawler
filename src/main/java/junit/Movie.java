@@ -4,13 +4,15 @@ import java.util.List;
 
 public class Movie extends JSONBase {
 
+    private String title;
     private String director;
     private String category;
     private List<String> writers;
     private List<String> stars;
 
-    public Movie(String g, String f, String y, String d, String c, List<String> w, List<String> s) {
+    public Movie(String t, String g, String f, String y, String d, String c, List<String> w, List<String> s) {
         super(g, f, y);
+        this.title = t;
         this.director = d;
         this.category = c;
         this.writers = w;
@@ -31,5 +33,9 @@ public class Movie extends JSONBase {
 
     public List<String> getStars() {
         return stars;
+    }
+
+    public String getTitle() {
+        return title;
     }
 }

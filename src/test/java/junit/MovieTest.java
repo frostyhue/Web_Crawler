@@ -13,7 +13,7 @@ public class MovieTest {
     public void testMovieIfConstructorSetsDirector(){
         List<String> stars = new ArrayList<>();
         List<String> writers = new ArrayList<>();
-        Movie movieObj = new Movie("Fantasy", "Blu-ray", "2001", "Peter Jackson", "Another Movie", stars, writers);
+        Movie movieObj = new Movie("Lord of The rings","Fantasy", "Blu-ray", "2001", "Peter Jackson", "Another Movie", stars, writers);
 
         assertEquals("Peter Jackson", movieObj.getDirector());
     }
@@ -26,8 +26,9 @@ public class MovieTest {
         List<String> starsTest = new ArrayList<>();
         starsTest.add("Kosta");
         starsTest.add("Zeus");
-        Movie movieObj = new Movie("Fantasy", "Blu-ray", "2001", "Peter Jackson", "Movie", writersTest, starsTest);
+        Movie movieObj = new Movie("Bambi","Fantasy", "Blu-ray", "2001", "Peter Jackson", "Movie", writersTest, starsTest);
 
+        assertEquals("Bambi", movieObj.getTitle());
         assertEquals("Fantasy", movieObj.getGenre());
         assertEquals("Blu-ray", movieObj.getFormat());
         assertEquals("2001", movieObj.getYear());
@@ -36,4 +37,5 @@ public class MovieTest {
         assertEquals(writersTest, movieObj.getWriters());
         assertEquals(starsTest, movieObj.getStars());
     }
+
 }
