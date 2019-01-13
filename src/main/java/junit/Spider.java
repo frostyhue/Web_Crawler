@@ -50,11 +50,13 @@ public class Spider {
                 System.out.println(String.format("Current URL is %s", currentUrl));
             }
             leg.crawl(currentUrl);
-            boolean successfulResponse = leg.searchForWord();
+            boolean successfulResponse = leg.searchForWord(word);
             if (successfulResponse){
                 this.urlFound = currentUrl;
-                System.out.println(String.format("Word %s found ad %s", word, currentUrl));
+                System.out.println(String.format("Word %s found at %s", word, currentUrl));
+                break;
             }
+            this.pagesToVisit.addAll(leg.getLinks());
         }
         return this.urlFound;
     }
