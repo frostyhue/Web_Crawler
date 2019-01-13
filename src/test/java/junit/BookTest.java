@@ -17,9 +17,9 @@ public class BookTest {
     }
 
     @Test
-    public void testJsonBase()
+    public void testBookJSONReturn()
     {
-        Book book = new Book("Horror", "Audio", "1986", "ScaryMofo", "Book", "Pesho i Tosho", "Pesho i Kompaniq", "12973123");
+        Book book = new Book("Horror", "Audio", "1927", "ScaryMofo", "Book", "Pesho i Tosho", "Pesho i Kompaniq", "12973123");
         assertEquals("{\"year\":null,\"isbn\":\"12973123\",\"genre\":null,\"format\":null,\"publisher\":\"Pesho i Kompaniq\",\"title\":\"ScaryMofo\",\"category\":\"Book\",\"authors\":\"Pesho i Tosho\"}", book.getJSONFile());
     }
 }
