@@ -9,35 +9,12 @@ import java.util.Set;
  * Spider class that is the body of the project, where it gathers the data that is found from the SpiderLegs and makes it into a JSON file for the corresponding type.
  */
 public class Spider {
-    private int MAX_PAGES_TO_SEARCH;
+    private int MAX_PAGES_TO_SEARCH = 50;
     private Set<String> pagesVisited = new HashSet<String>();
     private List<String> pagesToVisit = new LinkedList<String>();
+    private String urlFound = "";
+    private int urlsChecked = 0;
 
-    /**
-     * Spider class constructor that accepts the max amount of pages searched and doesn't allow them to be set if the criterion are not met
-     * @param maxPages
-     */
-    public Spider(int maxPages) {
-        if (maxPages > 10){
-            throw new IllegalArgumentException("Max pages limit allowed exceeded, limit is 10 you tried: " + maxPages + "!");
-        }
-        if (maxPages < 0){
-            throw new IllegalArgumentException("Can not set max page limit to less than 0!");
-        }
-        this.pagesToVisit.add("https://testURL0.test");
-        this.pagesToVisit.add("https://testURL1.test");
-        this.pagesToVisit.add("https://testURL2.test");
-        this.pagesToVisit.add("https://testURL3.test");
-        MAX_PAGES_TO_SEARCH = maxPages;
-    }
-
-    /**
-     * Return the max number of pages to search.
-     * @return
-     */
-    public int getNrOfMaxPages(){
-        return this.MAX_PAGES_TO_SEARCH;
-    }
 
     /**
      * Get the next url in the hashedSet to process.
@@ -53,32 +30,34 @@ public class Spider {
     }
 
     /**
-     * Return the JSON format of the Music objects.
-     * @param genre
-     * @param format
-     * @param year
-     * @param artist
-     * @return
+     * Search though the given url and links found in it for the given word. Max number of pages that can be visited is 50.
+     * @param url
+     * @param word
      */
-    public Music getMusic(String genre, String format, String year, String artist)
-    {
-        Music m = new Music(genre,format, year, artist);
-        return m;
+    public String search(String url, String word){
+        while(this.pagesVisited.size() < this.MAX_PAGES_TO_SEARCH){
+            this.urlsChecked++;
+            System.out.println(String.format("Url nr %s being checked", this.urlsChecked));
+            String currentUrl;
+            SpiderLeg leg = new SpiderLeg();
+            if(this.pagesToVisit.isEmpty()){
+                currentUrl = url;
+                this.pagesVisited.add(url);
+                System.out.println(String.format("URL %s has been added to Visited urls list", url));
+            }
+            else {
+                currentUrl = this.getNextURL();
+                System.out.println(String.format("Current URL is %s", currentUrl));
+            }
+            leg.crawl(currentUrl);
+            boolean successfulResponse = leg.searchForWord(word);
+            if (successfulResponse){
+                this.urlFound = currentUrl;
+                System.out.println(String.format("Word %s found at %s", word, currentUrl));
+                break;
+            }
+            this.pagesToVisit.addAll(leg.getLinks());
+        }
+        return this.urlFound;
     }
-
-    /**
-     * Return the JSON format of the Movie objects.
-     * @param genre
-     * @param format
-     * @param year
-     * @param director
-     * @param writers
-     * @param stars
-     * @return
-     */
-    public Movie getMovie(String genre, String format, String year, String director, String writers, String stars){
-        Movie m = new Movie(genre, format, year, director, stars, writers);
-        return m;
-    }
-
 }

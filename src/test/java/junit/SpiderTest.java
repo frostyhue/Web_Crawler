@@ -1,190 +1,62 @@
 package junit;
 
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
+import static junitparams.JUnitParamsRunner.$;
 
 /**
  * Spider test class covering every testable aspect of the class.
  */
+@RunWith(JUnitParamsRunner.class)
 public class SpiderTest {
-    /**
-     * Mock test parameters for dummy objects.
-     */
-    private static final String genre = "metal";
-    private static final String year = "2023";
-    private static final String format = "ple-bei";
-    private static final String artist = "metalnika";
 
-
-    private static final String genreMovie = "akshon";
-    private static final String yearMovie = "2000";
-    private static final String formatMovie = "ple-bei";
-    private static final String directorMovie = "sasho";
-    private static final String starsMovie = "roman";
-    private static final String writersMovie = "borko";
+    private static String testUrl = "http://i358097.hera.fhict.nl/";
 
     /**
-     * Test method that checks if the constructor sets parameters properly.
+     * Test method to check if the search() method from Spider object returns a string.
+     * @return
      */
+    private static final Object[] setUrlAndWord(){
+        return $(
+                $(testUrl, "The Clean Coder: A Code of Conduct for Professional Programmers"),
+                $(testUrl, "The Princess Bride"),
+                $(testUrl, "No Fences")
+        );
+    }
+
+    /**
+     * Test method to check if the search() method from Spider object returns the expected link.
+     * @return
+     */
+    private static final Object[] setUrlAndWordWithResult(){
+        return $(
+                $(testUrl, "The Clean Coder: A Code of Conduct for Professional Programmers", "http://i358097.hera.fhict.nl/details.php?id=104"),
+                $(testUrl, "The Princess Bride", "http://i358097.hera.fhict.nl/details.php?id=204"),
+                $(testUrl, "No Fences", "http://i358097.hera.fhict.nl/details.php?id=303"),
+                $(testUrl, "The Clean Coder: A Code of Conduct for Professional Programmers", "http://i358097.hera.fhict.nl/details.php?id=104"),
+                $(testUrl, "J.R.R. Tolkien", "http://i358097.hera.fhict.nl/details.php?id=203")
+                );
+    }
+
     @Test
-    public void testSpiderMaxPagesToSearchIfExceedsLimit() {
-        Spider testSpider = new Spider(5);
-        assertEquals(5,testSpider.getNrOfMaxPages());
+    @Parameters(method = "setUrlAndWord")
+    public void testSearchReturnsAString(String url, String word){
+        Spider spider = new Spider();
+
+        assertTrue(spider.search(url,word) instanceof String);
     }
 
-    /**
-     * Test method that checks if the constructor throws and exception when an illegal value fot the max number of pages searched is entered, in this case more than 10 are illegal.
-     */
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testSpiderIfAllowsForMaxPagesLimitOf10ToBeExceeded() {
-        Spider testSpider = new Spider(11);
-    }
-
-    /**
-     * Test method that checks if the constructors throws an exception when an illegal value for the max number of pages searched is entered, in this case less than 0.
-     */
-    @Test(expected = IllegalArgumentException.class)
-    public void testSpiderIfNotAllowsForMaxPagesToBeLessThan0() {
-        Spider testSpider = new Spider(-1);
-    }
-
-    /**
-     * Test that checks if the urls are as they are supposed to be and the method is getting them one after the other.
-     */
     @Test
-    public void testIfNextURLReturnsURL() {
-        Spider testObj = new Spider(10);
+    @Parameters(method = "setUrlAndWordWithResult")
+    public void testSearchReturnsProperLink(String url, String word, String result){
+        Spider spider = new Spider();
 
-        assertEquals(testObj.getNextURL(), "https://testURL0.test");
-        assertEquals(testObj.getNextURL(), "https://testURL1.test");
-        assertEquals(testObj.getNextURL(), "https://testURL2.test");
-        assertEquals(testObj.getNextURL(), "https://testURL3.test");
-    }
-
-    /**
-     * Test that checks if the urls are different than the supplied ones.
-     */
-    @Test
-    public void testIfgetNextURLReturnsURLNotEqualsTest() {
-        Spider testObj = new Spider(10);
-        // Add a url that should not be the first one..
-
-        assertNotEquals(testObj.getNextURL(), "https://testURL2.test");
-        assertNotEquals(testObj.getNextURL(), "https://testURL3.test");
-        assertNotEquals(testObj.getNextURL(), "https://testURL4.test");
-    }
-
-    /**
-     * Mock test with dummy object testing for getting the correct genre value of the object.
-     */
-    @Test
-    public void testMockMovieGenre() {
-        Movie m = mock(Movie.class);
-        Spider sut = new Spider(10);
-
-        when(m.getDirector()).thenReturn(directorMovie);
-        when(m.getYear()).thenReturn(yearMovie);
-        when(m.getFormat()).thenReturn(formatMovie);
-        when(m.getGenre()).thenReturn(genreMovie);
-        when(m.getStars()).thenReturn(starsMovie);
-        when(m.getWriters()).thenReturn(writersMovie);
-
-
-        sut.getMovie(m.getGenre(), m.getFormat(), m.getYear(), m.getDirector(), m.getWriters(), m.getStars());
-        verify(m).getGenre();
-    }
-
-    /**
-     * Mock test with dummy object testing for getting the correct format value of the object.
-     */
-    @Test
-    public void testMockMovieFormat() {
-        Movie m = mock(Movie.class);
-        Spider sut = new Spider(10);
-
-        when(m.getDirector()).thenReturn(directorMovie);
-        when(m.getYear()).thenReturn(yearMovie);
-        when(m.getFormat()).thenReturn(formatMovie);
-        when(m.getGenre()).thenReturn(genreMovie);
-        when(m.getStars()).thenReturn(starsMovie);
-        when(m.getWriters()).thenReturn(writersMovie);
-
-
-        sut.getMovie(m.getGenre(), m.getFormat(), m.getYear(), m.getDirector(), m.getWriters(), m.getStars());
-        verify(m).getFormat();
-    }
-
-    /**
-     * Mock test with dummy object testing for getting the correct year value of the object.
-     */
-    @Test
-    public void testMockMovieYear() {
-        Movie m = mock(Movie.class);
-        Spider sut = new Spider(10);
-
-        when(m.getDirector()).thenReturn(directorMovie);
-        when(m.getYear()).thenReturn(yearMovie);
-        when(m.getFormat()).thenReturn(formatMovie);
-        when(m.getGenre()).thenReturn(genreMovie);
-        when(m.getStars()).thenReturn(starsMovie);
-        when(m.getWriters()).thenReturn(writersMovie);
-
-
-        sut.getMovie(m.getGenre(), m.getFormat(), m.getYear(), m.getDirector(), m.getWriters(), m.getStars());
-        verify(m).getYear();
-    }
-
-    /**
-     * Mock test with dummy object testing for getting the correct genre of the Music object.
-     */
-    @Test
-    public void testMockMusicGenre() {
-        Music m = mock(Music.class);
-        Spider sut = new Spider(10);
-
-        when(m.getArtist()).thenReturn(artist);
-        when(m.getYear()).thenReturn(year);
-        when(m.getFormat()).thenReturn(format);
-        when(m.getGenre()).thenReturn(genre);
-
-        sut.getMusic(m.getGenre(), m.getArtist(), m.getYear(), m.getFormat());
-        verify(m).getGenre();
-    }
-
-    /**
-     * Mock test with dummy object testing for getting the correct format of the Music object.
-     */
-    @Test
-    public void testMockMusicFormat() {
-        Music m = mock(Music.class);
-        Spider sut = new Spider(10);
-
-        when(m.getArtist()).thenReturn(artist);
-        when(m.getYear()).thenReturn(year);
-        when(m.getFormat()).thenReturn(format);
-        when(m.getGenre()).thenReturn(genre);
-
-        sut.getMusic(m.getGenre(), m.getArtist(), m.getYear(), m.getFormat());
-        verify(m).getFormat();
-    }
-
-    /**
-     * Mock test with dummy object testing for getting the correct year of the Music object.
-     */
-    @Test
-    public void testMockMusicYear() {
-        Music m = mock(Music.class);
-        Spider sut = new Spider(10);
-
-        when(m.getArtist()).thenReturn(artist);
-        when(m.getYear()).thenReturn(year);
-        when(m.getFormat()).thenReturn(format);
-        when(m.getGenre()).thenReturn(genre);
-
-        sut.getMusic(m.getGenre(), m.getArtist(), m.getYear(), m.getFormat());
-        verify(m).getYear();
+        assertEquals(result, spider.search(url,word));
     }
 
 }
