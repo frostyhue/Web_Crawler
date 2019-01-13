@@ -16,5 +16,14 @@ public class Music extends JSONBase{
         return this.artist;
     }
 
-
+    @Override
+    public JSONObject getJSONFile() {
+        JSONObject obj = new JSONObject();
+        obj.put("artist", this.artist);
+        obj.put("category", this.category);
+        obj.put("genre", this.genre);
+        obj.put("year", this.year);
+        obj.put("format", this.format);
+        return obj;
+    }
 }
