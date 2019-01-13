@@ -5,6 +5,8 @@ import org.junit.Test;
 
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
 
 public class BookTest {
 
@@ -21,5 +23,18 @@ public class BookTest {
     {
         Book book = new Book("Horror", "Audio", "1927", "ScaryMofo", "Book", "Pesho i Tosho", "Pesho i Kompaniq", "12973123");
         assertEquals("{\"year\":\"1927\",\"isbn\":\"12973123\",\"genre\":\"Horror\",\"format\":\"Audio\",\"publisher\":\"Pesho i Kompaniq\",\"title\":\"ScaryMofo\",\"category\":\"Book\",\"authors\":\"Pesho i Tosho\"}", book.getJSONFile().toJSONString());
+    }
+
+    private Book mockBook = mock(Book.class);
+    @Test
+    public void testMockBook()
+    {
+        assertTrue(mockBook instanceof Book);
+    }
+
+    @Test
+    public void testDirectInputConstructor()
+    {
+        
     }
 }
