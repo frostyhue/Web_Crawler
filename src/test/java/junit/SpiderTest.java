@@ -15,12 +15,32 @@ import static junitparams.JUnitParamsRunner.$;
 @RunWith(JUnitParamsRunner.class)
 public class SpiderTest {
 
+    private static String testUrl = "http://i358097.hera.fhict.nl/";
+
+    /**
+     * Test method to check if the search() method from Spider object returns a string.
+     * @return
+     */
     private static final Object[] setUrlAndWord(){
         return $(
-                $("http://i358097.hera.fhict.nl/", "The Clean Coder: A Code of Conduct for Professional Programmers"),
-                $("http://i358097.hera.fhict.nl/", "The Princess Bride"),
-                $("http://i358097.hera.fhict.nl/", "No Fences")
+                $(testUrl, "The Clean Coder: A Code of Conduct for Professional Programmers"),
+                $(testUrl, "The Princess Bride"),
+                $(testUrl, "No Fences")
         );
+    }
+
+    /**
+     * Test method to check if the search() method from Spider object returns the expected link.
+     * @return
+     */
+    private static final Object[] setUrlAndWordWithResult(){
+        return $(
+                $(testUrl, "The Clean Coder: A Code of Conduct for Professional Programmers", "http://i358097.hera.fhict.nl/details.php?id=104"),
+                $(testUrl, "The Princess Bride", "http://i358097.hera.fhict.nl/details.php?id=204"),
+                $(testUrl, "No Fences", "http://i358097.hera.fhict.nl/details.php?id=303"),
+                $(testUrl, "The Clean Coder: A Code of Conduct for Professional Programmers", "http://i358097.hera.fhict.nl/details.php?id=104"),
+                $(testUrl, "J.R.R. Tolkien", "http://i358097.hera.fhict.nl/details.php?id=203")
+                );
     }
 
     @Test
@@ -29,5 +49,13 @@ public class SpiderTest {
         Spider spider = new Spider();
 
         assertTrue(spider.search(url,word) instanceof String);
+    }
+
+    @Test
+    @Parameters(method = "setUrlAndWordWithResult")
+    public void testSearchReturnsProperLink(String url, String word, String result){
+        Spider spider = new Spider();
+
+        assertEquals(result, spider.search(url,word));
     }
 }
