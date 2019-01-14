@@ -2,18 +2,20 @@ package junit;
 
 import org.json.simple.JSONObject;
 
+import java.util.List;
+
+/**
+ * Class covering Book model.
+ */
 public class Book extends JSONBase{
     private String title;
     private String category;
-    private String genre;
-    private String format;
-    private String year;
-    private String authors;
+    private List<String> authors;
     private String publisher;
     private String isbn;
 
 
-    public Book(String g, String f, String y, String title, String category, String authors, String publisher, String isbn)
+    public Book(String g, String f, String y, String title, String category, List<String> authors, String publisher, String isbn)
     {
         super(g, f, y);
         this.title = title;
@@ -23,11 +25,18 @@ public class Book extends JSONBase{
         this.isbn = isbn;
     }
 
+    /**
+     * Method returning title variable.
+     * @return
+     */
     public String getTitle()
     {
         return this.title;
     }
-
+    /**
+     * Method returning the JSON.
+     * @return
+     */
     @Override
     public JSONObject getJSONFile() {
         JSONObject obj = new JSONObject();

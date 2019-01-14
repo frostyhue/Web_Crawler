@@ -43,6 +43,11 @@ public class SpiderTest {
                 );
     }
 
+    /**
+     * Parameterised test method that checks if the url returned is of type string.
+     * @param url
+     * @param word
+     */
     @Test
     @Parameters(method = "setUrlAndWord")
     public void testSearchReturnsAString(String url, String word){
@@ -51,6 +56,12 @@ public class SpiderTest {
         assertTrue(spider.search(url,word) instanceof String);
     }
 
+    /**
+     * Parameterised test method that cheks if the search method returns the correct link.
+     * @param url
+     * @param word
+     * @param result
+     */
     @Test
     @Parameters(method = "setUrlAndWordWithResult")
     public void testSearchReturnsProperLink(String url, String word, String result){

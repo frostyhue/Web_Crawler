@@ -11,19 +11,41 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * Class that is used to return JSON format string by checking the provided website for the needed information to create it.
+ */
 public class Scrapper {
 
     private String url;
     private String type;
     private Spider spider;
 
+    /**
+     * Method that goes through the format of the webpage and creates a obj of the type specified.
+     * @param url
+     * @param type
+     * @param word
+     */
     public Scrapper(String url, String type, String word){
         spider = new Spider();
-        this.url = spider.search(word, url);
+        this.url = spider.search(url, word);
         this.type = type;
 
     }
 
+    /**
+     * Method returning the url.
+     * @return
+     */
+    public String getUrl(){
+        return this.url;
+    }
+
+    /**
+     * Method that returns JSON based on the type specified, using the model classes and Spider class.
+     * @return
+     * @throws Exception
+     */
     public JSONObject getResultAsJSON() throws Exception{
         Document doc = Jsoup.connect(this.url).get();
 
@@ -59,17 +81,19 @@ public class Scrapper {
                 return m.getJSONFile();
             } else if(this.type == "book"){
                 //variables
-                String publisher  = data.get(4);
-                String isbn = data.get(5);
                 List<String> authors = new ArrayList<>();
-                String[] authorsArray = data.get(6).split(", ");
 
-                Book b = new Book(genre, format, year, title, cat, authors, publisher, isbn);
-                return b.getJSONFile();
-            } else if (this.type == "music"){
+                String[] authorsArray = data.get(4).split(", ");
+                authors = Arrays.asList(authorsArray);
+
+                String publisher = data.get(5);
+                String isbn = data.get(6);
+
+                junit.Book b = new junit.Book(genre, format, year, title, cat, authors, publisher, isbn);
+            } else if (this.type == "music") {
                 String artist = data.get(4);
-
-                Music m = new Music(genre, format,year, artist, cat);
+                Music m = new Music(title, genre, format,year, artist, cat);
+                return m.getJSONFile();
             }
         return null;
     }

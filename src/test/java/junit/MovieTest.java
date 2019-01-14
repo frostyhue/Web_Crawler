@@ -10,9 +10,13 @@ import java.util.List;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-
+/**
+ * Test class testing Movie class.
+ */
 public class MovieTest {
-
+    /**
+     * Test method checking for proper director instance.
+     */
     @Test
     public void testMovieIfConstructorSetsDirector(){
         List<String> stars = new ArrayList<>();
@@ -22,6 +26,9 @@ public class MovieTest {
         assertEquals("Peter Jackson", movieObj.getDirector());
     }
 
+    /**
+     * Test method checking Movies constructor.
+     */
     @Test
     public void testMovieIfConstructorSetsVariablesProperly(){
         List<String> writersTest = new ArrayList<>();
@@ -42,6 +49,9 @@ public class MovieTest {
         assertEquals(starsTest, movieObj.getStars());
     }
 
+    /**
+     * Test method checking JSON size.
+     */
     @Test
     public void testJsonObjectsSize(){
         List<String> writersTest = new ArrayList<>();

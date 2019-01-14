@@ -65,6 +65,11 @@ public class SpiderLeg {
         }
     }
 
+    /**
+     * The method that checks for the wanted word inside of the links.
+     * @param w
+     * @return
+     */
     public boolean searchForWord(String w)
     {
         if(doc == null)
@@ -78,6 +83,10 @@ public class SpiderLeg {
         return text.toLowerCase().contains(w.toLowerCase());
     }
 
+    /**
+     * Method returning the links.
+     * @return
+     */
     public List<String> getLinks() {
         return this.links;
     }

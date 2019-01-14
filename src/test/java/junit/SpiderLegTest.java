@@ -13,6 +13,9 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.*;
 
+/**
+ * Test class checking the accuracy of the SpiderLeg class methods.
+ */
 @RunWith(JUnitParamsRunner.class)
 public class SpiderLegTest {
     /**
@@ -38,6 +41,9 @@ public class SpiderLegTest {
         assertEquals(true, leg.crawl(url));
     }
 
+    /**
+     * Test method checking if searchForWork() returns true if word is found.
+     */
     @Test
     public void testSearchForWord()
     {
@@ -51,6 +57,11 @@ public class SpiderLegTest {
     {
         return $("Google", "Bone");
     }
+
+    /**
+     * Parameterised test method checking for saved links.
+     * @param word
+     */
     @Test
     @Parameters(method = "getWord")
     public void checkParametersForGetLinks(String word)
@@ -61,7 +72,9 @@ public class SpiderLegTest {
         assertEquals(true, leg.searchForWord(word));
     }
 
-
+    /**
+     * Test method checking for instance of SpiderLeg.
+     */
     public SpiderLeg mockLeg = mock(SpiderLeg.class);
     @Test
     public void testSpiderLegMock()
